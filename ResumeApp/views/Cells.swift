@@ -43,36 +43,37 @@ class WorkExperienceCell: UITableViewCell {
     static let reuseIdentifier = "WorkExperienceCell"
     
     lazy var companyNameLabel: UILabel! = {
-        return getDefaultLabel()
+        return getDefaultLabel(font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize))
     }()
     
     lazy var dateLabel: UILabel! = {
-        return getDefaultLabel()
+        return getDefaultLabel(font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize))
     }()
     
     lazy var positionLabel: UILabel! = {
-        return getDefaultLabel()
+        return getDefaultLabel(font: UIFont.boldSystemFont(ofSize: UIFont.labelFontSize))
     }()
     
     lazy var toolsUsedLabel: UILabel! = {
-        return getDefaultLabel()
+        return getDefaultLabel(font: UIFont.systemFont(ofSize: UIFont.labelFontSize))
     }()
     
     lazy var summaryLabel: UILabel! = {
-        return getDefaultLabel()
+        return getDefaultLabel(font: UIFont.systemFont(ofSize: UIFont.labelFontSize))
     }()
     
     lazy var projectsLabel: UILabel! = {
-        return getDefaultLabel()
+        return getDefaultLabel(font: UIFont.systemFont(ofSize: UIFont.labelFontSize))
     }()
     
     lazy var additionalNotesLabel: UILabel! = {
-        return getDefaultLabel()
+        return getDefaultLabel(font: UIFont.systemFont(ofSize: UIFont.labelFontSize))
     }()
     
-    private func getDefaultLabel () -> UILabel{
+    private func getDefaultLabel (font: UIFont) -> UILabel{
         let label = UILabel()
         label.numberOfLines = 0
+        label.font = font
         label.lineBreakMode = .byWordWrapping
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -80,26 +81,26 @@ class WorkExperienceCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        let stackView = UIStackView(arrangedSubviews: [companyNameLabel, dateLabel, positionLabel, toolsUsedLabel
+        let titleStack = UIStackView(arrangedSubviews: [companyNameLabel, dateLabel])
+        titleStack.alignment = .fill
+        titleStack.axis = .horizontal
+        titleStack.distribution = .fillEqually
+        titleStack.spacing = 8
+        titleStack.translatesAutoresizingMaskIntoConstraints = false
+        
+        let stackView = UIStackView(arrangedSubviews: [titleStack, positionLabel, toolsUsedLabel
             , summaryLabel, projectsLabel, additionalNotesLabel])
         stackView.alignment = .fill
         stackView.axis = .vertical
         stackView.distribution = .fill
-        stackView.spacing = 16
+        stackView.spacing = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-//        addSubview(companyNameLabel)
-//        addSubview(dateLabel)
-//        addSubview(positionLabel)
-//        addSubview(toolsUsedLabel)
-//        addSubview(summaryLabel)
-//        addSubview(projectsLabel)
-//        addSubview(additionalNotesLabel)
+    
         
         addSubview(stackView)
         stackView.topAnchor.constraint(equalTo: topAnchor, constant: 16).isActive = true
         stackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
-        stackView.rightAnchor.constraint(equalTo: rightAnchor, constant: 16).isActive = true
+        stackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
         stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 16).isActive = true
        
     }
@@ -112,8 +113,8 @@ class WorkExperienceCell: UITableViewCell {
         companyNameLabel.text = workExperience.companyName
         dateLabel.text = workExperience.date
         positionLabel.text = workExperience.position
-        toolsUsedLabel.text = workExperience.toolsUsed.joined(separator: ", ")
-        summaryLabel.attributedText = NSAttributedString(string: workExperience.summary.joined(separator: "\n"))
+        toolsUsedLabel.text = "Tools Used: \(workExperience.toolsUsed.joined(separator: ", "))"
+        summaryLabel.attributedText = NSAttributedString(string: workExperience.summary.joined(separator: "\n\n"))
         
         let attributedString = NSMutableAttributedString()
         workExperience.project.forEach {
