@@ -18,10 +18,10 @@
 		5ACDCE5822BAFF170018DE87 /* ResumeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACDCE5722BAFF170018DE87 /* ResumeTableViewController.swift */; };
 		5ACDCE5B22BB00510018DE87 /* ResumeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACDCE5A22BB00510018DE87 /* ResumeViewModel.swift */; };
 		5ACDCE5E22BB01250018DE87 /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACDCE5D22BB01250018DE87 /* RestClient.swift */; };
-		5ACDCE6022BB12F10018DE87 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACDCE5F22BB12F10018DE87 /* Section.swift */; };
 		5ACDCE6222BB1C150018DE87 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACDCE6122BB1C150018DE87 /* NetworkError.swift */; };
 		5ACDCE6422BB1E960018DE87 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACDCE6322BB1E960018DE87 /* Mocks.swift */; };
 		5ACDCE6622BB235C0018DE87 /* RestClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACDCE6522BB235C0018DE87 /* RestClientTests.swift */; };
+		5ACDCE6F22BB4BD90018DE87 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACDCE6E22BB4BD90018DE87 /* Section.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,10 +59,10 @@
 		5ACDCE5722BAFF170018DE87 /* ResumeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ResumeTableViewController.swift; path = ResumeApp/views/ResumeTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		5ACDCE5A22BB00510018DE87 /* ResumeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResumeViewModel.swift; sourceTree = "<group>"; };
 		5ACDCE5D22BB01250018DE87 /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
-		5ACDCE5F22BB12F10018DE87 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		5ACDCE6122BB1C150018DE87 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		5ACDCE6322BB1E960018DE87 /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		5ACDCE6522BB235C0018DE87 /* RestClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClientTests.swift; sourceTree = "<group>"; };
+		5ACDCE6E22BB4BD90018DE87 /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,10 +148,10 @@
 		5ACDCE4D22BAFCA80018DE87 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				5ACDCE6E22BB4BD90018DE87 /* Section.swift */,
 				5ACDCE4E22BAFCE20018DE87 /* Resume.swift */,
 				5ACDCE5022BAFCE20018DE87 /* Project.swift */,
 				5ACDCE4F22BAFCE20018DE87 /* WorkExperience.swift */,
-				5ACDCE5F22BB12F10018DE87 /* Section.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -311,13 +311,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ACDCE6F22BB4BD90018DE87 /* Section.swift in Sources */,
 				5ACDCE5822BAFF170018DE87 /* ResumeTableViewController.swift in Sources */,
 				5ACDCE2022BAF9B50018DE87 /* AppDelegate.swift in Sources */,
 				5ACDCE5E22BB01250018DE87 /* RestClient.swift in Sources */,
 				5ACDCE5222BAFCE20018DE87 /* Resume.swift in Sources */,
 				5ACDCE5322BAFCE20018DE87 /* WorkExperience.swift in Sources */,
 				5ACDCE5B22BB00510018DE87 /* ResumeViewModel.swift in Sources */,
-				5ACDCE6022BB12F10018DE87 /* Section.swift in Sources */,
 				5ACDCE5422BAFCE20018DE87 /* Project.swift in Sources */,
 				5ACDCE6222BB1C150018DE87 /* NetworkError.swift in Sources */,
 			);
