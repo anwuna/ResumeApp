@@ -13,8 +13,11 @@ class ResumeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+    
         registerCells()
+        
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         viewModel = ResumeViewModel(delegate: self, restClient: RestClient())
         viewModel.getResume()
@@ -42,13 +45,13 @@ class ResumeTableViewController: UITableViewController {
         case .name:
             return getNameCell(tableView, name: viewModel.getName())
         case .summary:
-            return getSummaryCell(summary: viewModel.getSummary(index: indexPath.row))
+            return getSummaryCell(tableView, summary: viewModel.getSummary(index: indexPath.row))
         case .skills:
-            return getSkillsCell(skills: viewModel.getSkills())
+            return getSkillsCell(tableView, skills: viewModel.getSkills())
         case .workExperience:
-            return getWorkExperienceCell(workExperience: viewModel.getWorkExperience(index: indexPath.row))
+            return getWorkExperienceCell(tableView, workExperience: viewModel.getWorkExperience(index: indexPath.row))
         case .education:
-            return getEducationCell(education: viewModel.getEducation())
+            return getEducationCell(tableView, education: viewModel.getEducation())
         }
     }
     
@@ -70,6 +73,11 @@ extension ResumeTableViewController {
     private func registerCells() {
         
         tableView.register(NameCell.self, forCellReuseIdentifier: NameCell.reuseIdentifier)
+        tableView.register(SummaryCell.self, forCellReuseIdentifier: SummaryCell.reuseIdentifier)
+        tableView.register(SkillsCell.self, forCellReuseIdentifier: SkillsCell.reuseIdentifier)
+        tableView.register(WorkExperienceCell.self, forCellReuseIdentifier: WorkExperienceCell.reuseIdentifier)
+        tableView.register(EducationCell.self, forCellReuseIdentifier: EducationCell.reuseIdentifier)
+        
     }
     
     private func getNameCell(_ tableView: UITableView, name: String) -> UITableViewCell {
@@ -80,28 +88,39 @@ extension ResumeTableViewController {
         return UITableViewCell()
     }
     
-    private func getSummaryCell(summary: String) -> SummaryCell {
-        let cell = SummaryCell()
-        cell.setup(summary)
-        return cell
+    private func getSummaryCell(_ tableView: UITableView, summary: String) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: SummaryCell.reuseIdentifier) as? SummaryCell {
+            cell.setup(summary)
+            return cell
+        }
+        return UITableViewCell()
     }
     
-    private func getSkillsCell(skills: [String]) -> SkillsCell {
-        let cell = SkillsCell()
-        cell.setup(skills)
-        return cell
+    private func getSkillsCell(_ tableView: UITableView, skills: [String]) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: SkillsCell.reuseIdentifier) as? SkillsCell {
+            cell.setup(skills)
+            return cell
+        }
+        
+        return UITableViewCell()
     }
     
-    private func getWorkExperienceCell(workExperience: WorkExperience) -> WorkExperienceCell {
-        let cell = WorkExperienceCell()
-        cell.setup(workExperience)
-        return cell
+    private func getWorkExperienceCell(_ tableView: UITableView, workExperience: WorkExperience) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: WorkExperienceCell.reuseIdentifier) as? WorkExperienceCell {
+            cell.setup(workExperience)
+            return cell
+        }
+        
+        return UITableViewCell()
+
     }
     
-    private func getEducationCell(education: String) -> EducationCell {
-        let cell = EducationCell()
-        cell.setup(education)
-        return cell
+    private func getEducationCell(_ tableView: UITableView, education: String) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: EducationCell.reuseIdentifier) as? EducationCell {
+            cell.setup(education)
+            return cell
+        }
+        return UITableViewCell()
     }
 }
 
