@@ -65,7 +65,7 @@ extension ResumeViewModelTests {
     
     func test_section_name_should_Be_Empty() {
         let viewModel = ResumeViewModel(restClient: MockRestClient())
-        XCTAssertTrue(viewModel.resumeName.isEmpty)
+        XCTAssertTrue(viewModel.getName().isEmpty)
     }
     
     func test_section_name_should_Not_Be_Empty() {
@@ -77,7 +77,7 @@ extension ResumeViewModelTests {
         let viewModel = ResumeViewModel(restClient: restClient)
         viewModel.getResume()
         
-        XCTAssertEqual(viewModel.resumeName, "John")
+        XCTAssertEqual(viewModel.getName(), "John")
     }
     
     func test_no_of_rows_in_Name_Section_ShouldBeOne(){
