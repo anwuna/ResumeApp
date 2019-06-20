@@ -109,6 +109,21 @@ extension ResumeViewModelTests {
         XCTAssertEqual(rowCount, 1)
     }
     
+    func test_no_of_rows_for_skills_Section_ShouldBeOne() {
+        var resume = Resume()
+        resume.skills = ["C#", "SWIFT"]
+        
+        let restClient = MockRestClient()
+        restClient.mockResume = resume
+        
+        let viewModel = ResumeViewModel(restClient: restClient)
+        viewModel.getResume()
+        let sectionIndex = viewModel.indexOf(sectionString: "SKILLS")
+        let rowCount = viewModel.noOfRows(in: sectionIndex)
+        
+        XCTAssertEqual(rowCount, 1)
+    }
+    
     func test_no_of_rows_in_Section_ShouldEqual_DataSource(){
         var resume = Resume()
         resume.skills = ["C#", ".Net"]
@@ -128,7 +143,6 @@ extension ResumeViewModelTests {
         let workExperienceRowCount = viewModel.noOfRows(in: viewModel.indexOf(sectionString: "WORK EXPERIENCE"))
         
         XCTAssertEqual(summaryRowCount, resume.summary.count)
-        XCTAssertEqual(skillsRowCount, resume.skills.count)
         XCTAssertEqual(workExperienceRowCount, resume.workExperience.count)
     }
 
