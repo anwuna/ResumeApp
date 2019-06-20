@@ -13,7 +13,7 @@ class ResumeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         registerCells()
         
         viewModel = ResumeViewModel(delegate: self, restClient: RestClient())
