@@ -26,8 +26,8 @@ struct WorkExperience : Codable {
 		position = try values.decode(String.self, forKey: .position)
 		toolsUsed = try values.decode([String].self, forKey: .toolsUsed)
 		summary = try values.decode([String].self, forKey: .summary)
-		project = try values.decode([Project].self, forKey: .project)
-		additionalNotes = try values.decode(String.self, forKey: .additionalNotes)
+        project = try values.decodeIfPresent([Project].self, forKey: .project) ?? []
+		additionalNotes = try values.decodeIfPresent(String.self, forKey: .additionalNotes) ?? ""
 	}
 
 }

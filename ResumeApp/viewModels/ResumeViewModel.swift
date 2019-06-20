@@ -9,15 +9,11 @@
 import Foundation
 
 class ResumeViewModel {
-    private let url = "https://gist.githubusercontent.com/anwuna/d4abb0325306b6984d80e1e1ede4a873/raw/36cdb3404ae6f99de7feb7e4d213afdb6e8c846d/json"
+    private let url = "https://gist.githubusercontent.com/anwuna/d4abb0325306b6984d80e1e1ede4a873/raw/f02194bf4f18e0d4e2e9f291828b0c3e775edfb9/json"
     private var restClient: RestClientProtocol
     private let sections:[Section] = Section.getSections()
     private var delegate: ResumeViewModelProtocol?
     private var resume = Resume()
-    
-    var resumeName: String {
-        return resume.name
-    }
     
     init(delegate: ResumeViewModelProtocol? = nil, restClient: RestClientProtocol) {
         self.restClient = restClient
@@ -37,7 +33,7 @@ class ResumeViewModel {
         case .summary:
             return resume.summary.count
         case .skills:
-            return resume.skills.count
+            return 1
         case .workExperience:
             return resume.workExperience.count
         case .education:
@@ -47,7 +43,7 @@ class ResumeViewModel {
     }
     
     func indexOf(sectionString: String) -> Int {
-        if let section = Section(rawValue: sectionString), let index = section.firstIndex(of: section) {
+        if let section = Section(rawValue: sectionString), let index = sections.firstIndex(of: section) {
             return index
         }
         return 0
@@ -57,25 +53,28 @@ class ResumeViewModel {
         return sections[index].rawValue
     }
     
-    func section(index: Int) -> Section {
-        
+    func getSection(index: Int) -> Section {
+        return sections[index]
     }
     
-    func cellDataForRow(at indexPath: IndexPath) ->(Section, Any) {
-        let section = sections[indexPath.section]
-        
-        switch section {
-        case .name:
-            return 1
-        case .summary:
-            return resume.summary.count
-        case .skills:
-            return resume.skills.count
-        case .workExperience:
-            return resume.workExperience.count
-        case .education:
-            return 1
-        }
+    func getName() -> String {
+        return resume.name
+    }
+    
+    func getSummary(index: Int) -> String {
+        return resume.summary[index]
+    }
+    
+    func getSkills() -> [String] {
+        return resume.skills
+    }
+    
+    func getWorkExperience(index: Int) -> WorkExperience {
+        return resume.workExperience[index]
+    }
+    
+    func getEducation() -> String {
+        return resume.education
     }
     
     func getResume() {

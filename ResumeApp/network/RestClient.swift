@@ -25,24 +25,30 @@ class RestClient: RestClientProtocol {
     func get<T>(urlString: String, successHandler: @escaping (T) -> Void, errorHandler: @escaping ErrorHandler) where T: Decodable {
         
         let completionHandler: CompletionHandler = { (data, urlResponse, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                errorHandler(NetworkError.genericError)
-                return
-            }
-            
-            if self.isSuccessful(urlResponse) {
-                guard let data = data else {
-                    print("Unable to parse the response in given type \(T.self)")
-                    return errorHandler(NetworkError.noDataError)
-                }
-                
-                if let responseObject = try? JSONDecoder().decode(T.self, from: data) {
-                    successHandler(responseObject)
+            DispatchQueue.main.async {
+                if let error = error {
+                    print(error.localizedDescription)
+                    errorHandler(NetworkError.genericError)
                     return
                 }
+                
+                if self.isSuccessful(urlResponse) {
+                    guard let data = data else {
+                        print("Unable to parse the response in given type \(T.self)")
+                        return errorHandler(NetworkError.noDataError)
+                    }
+                    
+                    do {
+                        let responseObject = try JSONDecoder().decode(T.self, from: data)
+                        successHandler(responseObject)
+                        return
+                    } catch {
+                        print(error)
+                    }
+                    
+                }
+                errorHandler(NetworkError.genericError)
             }
-            errorHandler(NetworkError.genericError)
         }
         
         guard let url = URL(string: urlString) else {

@@ -22,6 +22,7 @@
 		5ACDCE6422BB1E960018DE87 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACDCE6322BB1E960018DE87 /* Mocks.swift */; };
 		5ACDCE6622BB235C0018DE87 /* RestClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACDCE6522BB235C0018DE87 /* RestClientTests.swift */; };
 		5ACDCE6F22BB4BD90018DE87 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACDCE6E22BB4BD90018DE87 /* Section.swift */; };
+		5ACDCE7322BB54650018DE87 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACDCE7222BB54650018DE87 /* Cells.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		5ACDCE6322BB1E960018DE87 /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		5ACDCE6522BB235C0018DE87 /* RestClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClientTests.swift; sourceTree = "<group>"; };
 		5ACDCE6E22BB4BD90018DE87 /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		5ACDCE7222BB54650018DE87 /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				5ACDCE5722BAFF170018DE87 /* ResumeTableViewController.swift */,
+				5ACDCE7222BB54650018DE87 /* Cells.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				5ACDCE5822BAFF170018DE87 /* ResumeTableViewController.swift in Sources */,
 				5ACDCE2022BAF9B50018DE87 /* AppDelegate.swift in Sources */,
 				5ACDCE5E22BB01250018DE87 /* RestClient.swift in Sources */,
+				5ACDCE7322BB54650018DE87 /* Cells.swift in Sources */,
 				5ACDCE5222BAFCE20018DE87 /* Resume.swift in Sources */,
 				5ACDCE5322BAFCE20018DE87 /* WorkExperience.swift in Sources */,
 				5ACDCE5B22BB00510018DE87 /* ResumeViewModel.swift in Sources */,
