@@ -15,15 +15,11 @@ let testData = """
 "summary": [
 "An Ingenious and passionate software developer with experience in the full software development lifecycle; from concept through to the delivery of a wide variety of solutions."
 ],
-"skills": {
-"competent_in": [
+"skills":[
 "C#",
-"Swift"
-],
-"familiar_with": [
+"Swift",
 "Angular JS"
-]
-},
+],
 "work_experience": [
 {
 "company_name": "Fake Company Calgary",
@@ -64,15 +60,16 @@ class RestClientTests: XCTestCase {
         
         let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
         session.urlResponse = response
-        
-        let restClient = RestClient(session: session)
+    
+        let queue = DispatchQueue(label: "queue")
+        let restClient = RestClient(session: session, queue: queue)
         
         var resume: Resume?
-        
         restClient.get(urlString: validURLString, successHandler: {
             resume = $0
         }) { _ in }
         
+        queue.sync {}
         XCTAssertNotNil(resume)
         XCTAssertEqual(resume?.name, "John Mathews")
         XCTAssertEqual(resume?.summary.count, 1)
@@ -94,9 +91,11 @@ class RestClientTests: XCTestCase {
         let session = MockURLSession()
         session.error = NSError(domain: "1001", code: 101, userInfo: nil)
         
-        let restClient = RestClient(session: session)
+        let queue = DispatchQueue(label: "queue")
+        let restClient = RestClient(session: session, queue: queue)
         var errorString = ""
         restClient.get(urlString: validURLString, successHandler: {(resume: Resume) in }) {  errorString = $0 }
+        queue.sync {}
         
         XCTAssertEqual(errorString, NetworkError.genericError)
     }
@@ -110,11 +109,11 @@ class RestClientTests: XCTestCase {
         let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
         session.urlResponse = response
         
-        let restClient = RestClient(session: session)
-        
+        let queue = DispatchQueue(label: "queue")
+        let restClient = RestClient(session: session, queue: queue)
         var errorString = ""
         restClient.get(urlString: validURLString, successHandler: {(resume: Resume) in }) {  errorString = $0 }
-        
+        queue.sync {}
         XCTAssertEqual(errorString, NetworkError.genericError)
     }
     
@@ -125,11 +124,12 @@ class RestClientTests: XCTestCase {
         let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
         session.urlResponse = response
         
-        let restClient = RestClient(session: session)
+        let queue = DispatchQueue(label: "queue")
+        let restClient = RestClient(session: session, queue: queue)
         
         var errorString = ""
         restClient.get(urlString: validURLString, successHandler: {(resume: Resume) in }) {  errorString = $0 }
-        
+        queue.sync {}
         XCTAssertEqual(errorString, NetworkError.noDataError)
     }
 }

@@ -31,11 +31,13 @@ class ResumeViewModelTests: XCTestCase {
         session.data = data
         session.urlResponse = response
         
-        let restClient = RestClient(session: session)
+        let queue = DispatchQueue(label: "queue")
+        let restClient = RestClient(session: session, queue: queue)
         let delegate = MockViewModelImpl()
         delegate.successExpectation = self.expectation(description: "onFetchDataSuccessful is called")
         let viewModel = ResumeViewModel(delegate: delegate, restClient: restClient)
         viewModel.getResume()
+        queue.sync {}
         
         waitForExpectations(timeout: 1)
     }
@@ -139,7 +141,6 @@ extension ResumeViewModelTests {
         viewModel.getResume()
         
         let summaryRowCount = viewModel.noOfRows(in: viewModel.indexOf(sectionString: "SUMMARY"))
-        let skillsRowCount = viewModel.noOfRows(in: viewModel.indexOf(sectionString: "SKILLS"))
         let workExperienceRowCount = viewModel.noOfRows(in: viewModel.indexOf(sectionString: "WORK EXPERIENCE"))
         
         XCTAssertEqual(summaryRowCount, resume.summary.count)

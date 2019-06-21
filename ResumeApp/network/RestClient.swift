@@ -17,15 +17,17 @@ protocol RestClientProtocol {
 
 class RestClient: RestClientProtocol {
     var session: URLSession
+    var queue: DispatchQueue
     
-    init(session: URLSession = .shared) {
+    init(session: URLSession = .shared, queue: DispatchQueue = DispatchQueue.main) {
         self.session = session
+        self.queue = queue
     }
     
     func get<T>(urlString: String, successHandler: @escaping (T) -> Void, errorHandler: @escaping ErrorHandler) where T: Decodable {
         
         let completionHandler: CompletionHandler = { (data, urlResponse, error) in
-            DispatchQueue.main.async {
+            self.queue.async {
                 if let error = error {
                     print(error.localizedDescription)
                     errorHandler(NetworkError.genericError)

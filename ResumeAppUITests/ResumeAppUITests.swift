@@ -35,6 +35,17 @@ class ResumeAppUITests: XCTestCase {
         XCTAssertTrue(tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["Mr. Chibundu John Anwuna"]/*[[".cells.staticTexts[\"Mr. Chibundu John Anwuna\"]",".staticTexts[\"Mr. Chibundu John Anwuna\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.exists)
     }
     
+    func testSummaryContainsCertainText() {
+        let paragraph1 = "An Ingenious and passionate software"
+        let paragraph2 = "Extensive knowledge in software development"
+        let paragraph3 = "Excellent troubleshooting skills, debugging"
+
+        for pargs in [paragraph1, paragraph2, paragraph3] {
+            let elementQuery = application.staticTexts.containing(NSPredicate(format: "label CONTAINS[c] %@", pargs))
+            XCTAssertGreaterThanOrEqual(elementQuery.count, 1)
+        }
+    }
+    
     func testCompanyNames_Exists(){
         let tableQuery = application.tables
         XCTAssertTrue(tableQuery.staticTexts["SKF Calgary"].exists)
