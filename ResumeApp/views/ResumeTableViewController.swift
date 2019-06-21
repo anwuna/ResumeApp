@@ -78,6 +78,7 @@ extension ResumeTableViewController {
     
     private func addRefreshButton() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(getResume))
+        navigationController?.navigationBar.tintColor = UIColor.black
     }
     
     @objc private func getResume() {
