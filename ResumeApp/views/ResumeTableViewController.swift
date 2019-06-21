@@ -10,17 +10,17 @@ import UIKit
 
 class ResumeTableViewController: UITableViewController {
     var viewModel: ResumeViewModel!
+    var loadingView: LoadingView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    
+        loadingView = LoadingView.shared
         registerCells()
         
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
+        self.title = "RESUME"
         viewModel = ResumeViewModel(delegate: self, restClient: RestClient())
         viewModel.getResume()
+        loadingView.startAnimating(in: self.tableView)
     }
 
     // MARK: - Table view data source
@@ -126,11 +126,16 @@ extension ResumeTableViewController {
 
 extension ResumeTableViewController: ResumeViewModelProtocol {
     func onFetchDataSuccessful() {
+        loadingView.stopAnimating()
         tableView.reloadData()
     }
     
     func onFetchDataFailed() {
-        //todo: Handle errors
+        loadingView.stopAnimating()
+        
+        let alert = UIAlertController(title: "Error", message: "Unable to fetch resume at this time", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
+        present(alert, animated: true)
     }
     
     

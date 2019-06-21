@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A6004FD22BC799B001144AF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6004FC22BC799B001144AF /* LoadingView.swift */; };
 		5ACDCE2022BAF9B50018DE87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACDCE1F22BAF9B50018DE87 /* AppDelegate.swift */; };
 		5ACDCE2722BAF9B80018DE87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5ACDCE2622BAF9B80018DE87 /* Assets.xcassets */; };
 		5ACDCE2A22BAF9B80018DE87 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5ACDCE2822BAF9B80018DE87 /* LaunchScreen.storyboard */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A6004FC22BC799B001144AF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		5ACDCE1C22BAF9B50018DE87 /* ResumeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ResumeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ACDCE1F22BAF9B50018DE87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5ACDCE2622BAF9B80018DE87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			children = (
 				5ACDCE5722BAFF170018DE87 /* ResumeTableViewController.swift */,
 				5ACDCE7222BB54650018DE87 /* Cells.swift */,
+				5A6004FC22BC799B001144AF /* LoadingView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				5ACDCE6F22BB4BD90018DE87 /* Section.swift in Sources */,
 				5ACDCE5822BAFF170018DE87 /* ResumeTableViewController.swift in Sources */,
 				5ACDCE2022BAF9B50018DE87 /* AppDelegate.swift in Sources */,
+				5A6004FD22BC799B001144AF /* LoadingView.swift in Sources */,
 				5ACDCE5E22BB01250018DE87 /* RestClient.swift in Sources */,
 				5ACDCE7322BB54650018DE87 /* Cells.swift in Sources */,
 				5ACDCE5222BAFCE20018DE87 /* Resume.swift in Sources */,
