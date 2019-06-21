@@ -75,7 +75,7 @@ class RestClientTests: XCTestCase {
         XCTAssertEqual(resume?.summary.count, 1)
     }
     
-    func test_InvalidUrl_Error_Returned_When_Url_Is_Invalid() {
+    func test_Error_Returned_When_Url_Is_Invalid() {
         let session = MockURLSession()
         var errorString = ""
         
@@ -83,7 +83,7 @@ class RestClientTests: XCTestCase {
         restClient.get(urlString: invalidURLString, successHandler: {(resume: Resume) in
         }) { errorString = $0 }
         
-        XCTAssertEqual(errorString, "Invalid Url")
+        XCTAssertEqual(errorString, NetworkError.invalidUrl)
         
     }
     

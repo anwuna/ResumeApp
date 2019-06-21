@@ -12,4 +12,5 @@ struct NetworkError {
     static let genericError = "An error occurred"
     static let noDataError = "No data was recevied"
     static let parseError = "Invalid data recived"
+    static let invalidUrl = "Error"
 }

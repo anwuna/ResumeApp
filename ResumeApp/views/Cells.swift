@@ -129,9 +129,7 @@ class WorkExperienceCell: UITableViewCell {
             
         }
         projectsLabel.attributedText = attributedString
-        
         additionalNotesLabel.text = workExperience.additionalNotes
-        
     }
     
 }

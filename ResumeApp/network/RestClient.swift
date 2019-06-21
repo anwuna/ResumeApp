@@ -28,8 +28,7 @@ class RestClient: RestClientProtocol {
         
         let completionHandler: CompletionHandler = { (data, urlResponse, error) in
             self.queue.async {
-                if let error = error {
-                    print(error.localizedDescription)
+                if error != nil {
                     errorHandler(NetworkError.genericError)
                     return
                 }
@@ -52,7 +51,7 @@ class RestClient: RestClientProtocol {
         }
         
         guard let url = URL(string: urlString) else {
-            return errorHandler("Invalid Url")
+            return errorHandler(NetworkError.invalidUrl)
         }
         let request = URLRequest(url: url)
         session.dataTask(with: request, completionHandler: completionHandler).resume()
