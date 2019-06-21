@@ -9,18 +9,24 @@
 import UIKit
 
 class ResumeTableViewController: UITableViewController {
+    let cellHeight: CGFloat = 44
+    
     var viewModel: ResumeViewModel!
     var loadingView: LoadingView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = ResumeViewModel(delegate: self)
+        
         loadingView = LoadingView.shared
         registerCells()
+        addRefreshButton()
         
         self.title = "RESUME"
-        viewModel = ResumeViewModel(delegate: self, restClient: RestClient())
-        viewModel.getResume()
-        loadingView.startAnimating(in: self.tableView)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        getResume()
     }
 
     // MARK: - Table view data source
@@ -39,7 +45,6 @@ class ResumeTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = viewModel.getSection(index: indexPath.section)
-        print(section)
         
         switch section {
         case .name:
@@ -60,18 +65,27 @@ class ResumeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        return cellHeight
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 44
+        return cellHeight
     }
 
 }
 
 extension ResumeTableViewController {
+    
+    private func addRefreshButton() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(getResume))
+    }
+    
+    @objc private func getResume() {
+        viewModel.getResume()
+        loadingView.startAnimating(in: tableView)
+    }
+    
     private func registerCells() {
-        
         tableView.register(NameCell.self, forCellReuseIdentifier: NameCell.reuseIdentifier)
         tableView.register(SummaryCell.self, forCellReuseIdentifier: SummaryCell.reuseIdentifier)
         tableView.register(SkillsCell.self, forCellReuseIdentifier: SkillsCell.reuseIdentifier)
@@ -130,10 +144,10 @@ extension ResumeTableViewController: ResumeViewModelProtocol {
         tableView.reloadData()
     }
     
-    func onFetchDataFailed() {
+    func onFetchDataFailed(_ message: String) {
         loadingView.stopAnimating()
         
-        let alert = UIAlertController(title: "Error", message: "Unable to fetch resume at this time", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
         present(alert, animated: true)
     }

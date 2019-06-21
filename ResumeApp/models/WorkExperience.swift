@@ -1,4 +1,4 @@
-struct WorkExperience : Codable {
+struct WorkExperience : Codable, Equatable {
 	var companyName = ""
 	var date = ""
 	var position = ""
@@ -29,5 +29,16 @@ struct WorkExperience : Codable {
         project = try values.decodeIfPresent([Project].self, forKey: .project) ?? []
 		additionalNotes = try values.decodeIfPresent(String.self, forKey: .additionalNotes) ?? ""
 	}
+    
+    static func == (lhs: WorkExperience, rhs: WorkExperience) -> Bool {
+        return lhs.companyName == rhs.companyName &&
+                lhs.date == rhs.date &&
+                lhs.position == rhs.position &&
+                lhs.toolsUsed == rhs.toolsUsed &&
+                lhs.summary == rhs.summary &&
+                lhs.project == rhs.project &&
+                lhs.additionalNotes == rhs.additionalNotes
+    }
+    
 
 }

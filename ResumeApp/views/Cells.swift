@@ -12,6 +12,7 @@ class NameCell: UITableViewCell {
     static let reuseIdentifier = "NameCell"
     
     func setup(_ name: String) {
+        selectionStyle = .none
         self.textLabel?.text = name
     }
     
@@ -21,6 +22,7 @@ class SummaryCell: UITableViewCell {
     static let reuseIdentifier = "SummaryCell"
     
     func setup(_ summary: String) {
+        selectionStyle = .none
         self.textLabel?.numberOfLines = 0
         self.textLabel?.lineBreakMode = .byWordWrapping
         self.textLabel?.text = summary
@@ -31,6 +33,7 @@ class SkillsCell: UITableViewCell {
     static let reuseIdentifier = "SkillsCell"
     
     func setup(_ skills: [String]) {
+        selectionStyle = .none
         let skills = skills.joined(separator: ", ")
         self.textLabel?.numberOfLines = 0
         self.textLabel?.lineBreakMode = .byWordWrapping
@@ -96,12 +99,11 @@ class WorkExperienceCell: UITableViewCell {
         stackView.spacing = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
     
-        
         addSubview(stackView)
         stackView.topAnchor.constraint(equalTo: topAnchor, constant: 16).isActive = true
         stackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
         stackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 16).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16).isActive = true
        
     }
     
@@ -110,6 +112,7 @@ class WorkExperienceCell: UITableViewCell {
     }
     
     func setup(_ workExperience: WorkExperience) {
+        selectionStyle = .none
         companyNameLabel.text = workExperience.companyName
         dateLabel.text = workExperience.date
         positionLabel.text = workExperience.position
@@ -137,6 +140,7 @@ class EducationCell: UITableViewCell {
     static let reuseIdentifier = "EducationCell"
     
     func setup(_ education: String) {
+        selectionStyle = .none
         self.textLabel?.numberOfLines = 0
         self.textLabel?.lineBreakMode = .byWordWrapping
         self.textLabel?.text = education

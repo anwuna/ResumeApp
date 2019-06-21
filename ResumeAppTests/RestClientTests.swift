@@ -114,7 +114,7 @@ class RestClientTests: XCTestCase {
         var errorString = ""
         restClient.get(urlString: validURLString, successHandler: {(resume: Resume) in }) {  errorString = $0 }
         queue.sync {}
-        XCTAssertEqual(errorString, NetworkError.genericError)
+        XCTAssertEqual(errorString, NetworkError.parseError)
     }
     
     func test_NoDataError_Returned_When_Data_Nil() {

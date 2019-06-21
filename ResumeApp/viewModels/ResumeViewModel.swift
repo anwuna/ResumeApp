@@ -15,7 +15,7 @@ class ResumeViewModel {
     private var delegate: ResumeViewModelProtocol?
     private var resume = Resume()
     
-    init(delegate: ResumeViewModelProtocol? = nil, restClient: RestClientProtocol) {
+    init(delegate: ResumeViewModelProtocol? = nil, restClient: RestClientProtocol = RestClient()) {
         self.restClient = restClient
         self.delegate = delegate
     }
@@ -79,13 +79,11 @@ class ResumeViewModel {
     
     func getResume() {
         let successHandler: (Resume) -> Void = { resume in
-            print(resume)
             self.handleSuccess(resume)
         }
         
         let errorHandler: (String) -> Void = { error in
-            print(error)
-            self.handleFailure()
+            self.handleFailure(error)
         }
         
         restClient.get(urlString: url, successHandler: successHandler, errorHandler: errorHandler)
@@ -96,12 +94,12 @@ class ResumeViewModel {
         delegate?.onFetchDataSuccessful()
     }
     
-    private func handleFailure() {
-        delegate?.onFetchDataFailed()
+    private func handleFailure(_ message: String) {
+        delegate?.onFetchDataFailed(message)
     }
 }
 
 protocol ResumeViewModelProtocol {
     func onFetchDataSuccessful()
-    func onFetchDataFailed()
+    func onFetchDataFailed(_ message: String)
 }

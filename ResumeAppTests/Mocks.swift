@@ -29,7 +29,7 @@ class MockViewModelImpl: ResumeViewModelProtocol {
         successExpectation?.fulfill()
     }
     
-    func onFetchDataFailed() {
+    func onFetchDataFailed(_ message: String) {
         failureExpectation?.fulfill()
     }
     

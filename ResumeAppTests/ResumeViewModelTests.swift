@@ -96,6 +96,11 @@ extension ResumeViewModelTests {
         XCTAssertEqual(rowCount, 1)
     }
     
+    func test_indexOf_Section_should_returnZero_For_Invalid_Section() {
+        let viewModel =  ResumeViewModel()
+        XCTAssertEqual(viewModel.indexOf(sectionString: "Invalid section"), 0)
+    }
+    
     func test_no_of_rows_in_Education_Section_ShouldBeOne(){
         var resume = Resume()
         resume.name = "John"
@@ -124,6 +129,42 @@ extension ResumeViewModelTests {
         let rowCount = viewModel.noOfRows(in: sectionIndex)
         
         XCTAssertEqual(rowCount, 1)
+    }
+    
+    func test_Summary_Should_Equal_Summary_In_DataSource() {
+        var summaries = ["Summary1", "Summary2"]
+        var resume = Resume()
+        resume.summary = summaries
+        
+        let restClient = MockRestClient()
+        restClient.mockResume = resume
+        
+        let viewModel = ResumeViewModel(restClient: restClient)
+        viewModel.getResume()
+        
+        XCTAssertEqual(viewModel.getSummary(index: 0), summaries[0])
+        XCTAssertEqual(viewModel.getSummary(index: 1), summaries[1])
+    }
+    
+    func test_WorkExperience_Should_Equal_WorkExperience_In_DataSource() {
+        var workExperience1 = WorkExperience()
+        workExperience1.companyName = "Company1"
+        
+        var workExperience2 = WorkExperience()
+        workExperience2.companyName = "Company2"
+        
+        var resume = Resume()
+        resume.workExperience = [workExperience1, workExperience2]
+        
+        let restClient = MockRestClient()
+        restClient.mockResume = resume
+        
+        let viewModel = ResumeViewModel(restClient: restClient)
+        viewModel.getResume()
+        
+        XCTAssertEqual(viewModel.getWorkExperience(index: 0), workExperience1)
+        XCTAssertEqual(viewModel.getWorkExperience(index: 1), workExperience2)
+        
     }
     
     func test_no_of_rows_in_Section_ShouldEqual_DataSource(){

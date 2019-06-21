@@ -36,7 +36,6 @@ class RestClient: RestClientProtocol {
                 
                 if self.isSuccessful(urlResponse) {
                     guard let data = data else {
-                        print("Unable to parse the response in given type \(T.self)")
                         return errorHandler(NetworkError.noDataError)
                     }
                     
@@ -45,11 +44,10 @@ class RestClient: RestClientProtocol {
                         successHandler(responseObject)
                         return
                     } catch {
-                        print(error)
                     }
                     
                 }
-                errorHandler(NetworkError.genericError)
+                errorHandler(NetworkError.parseError)
             }
         }
         
