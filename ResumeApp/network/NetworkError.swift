@@ -10,7 +10,7 @@ import Foundation
 
 struct NetworkError {
     static let genericError = "An error occurred"
-    static let noDataError = "No data was recevied"
-    static let parseError = "Invalid data recived"
+    static let noDataError = "No data was received"
+    static let parseError = "Invalid data received"
     static let invalidUrl = "Error"
 }

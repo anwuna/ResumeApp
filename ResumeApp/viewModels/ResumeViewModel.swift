@@ -9,7 +9,7 @@
 import Foundation
 
 class ResumeViewModel {
-    private let url = "https://gist.githubusercontent.com/anwuna/d4abb0325306b6984d80e1e1ede4a873/raw/f02194bf4f18e0d4e2e9f291828b0c3e775edfb9/json"
+    private let url = "https://gist.githubusercontent.com/anwuna/d4abb0325306b6984d80e1e1ede4a873/raw/6aa2f2609b9374c7c98af851fff5af0851cb4240/json"
     private var restClient: RestClientProtocol
     private let sections:[Section] = Section.getSections()
     private var delegate: ResumeViewModelProtocol?
